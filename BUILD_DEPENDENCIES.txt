@@ -1,0 +1,48 @@
+================================================================================
+ andy-agent — Manuell zu installierende Pakete
+================================================================================
+
+Für den vollen Funktionsumfang (inkl. PDF-Erkennung für Vision-LLM):
+
+--------------------------------------------------------------------------------
+ 1. Build-System
+--------------------------------------------------------------------------------
+   cmake                        ≥ 3.14
+   g++ / clang++                mit C++17 Support
+   make
+
+   Debian/Ubuntu:
+     sudo apt install build-essential cmake
+
+--------------------------------------------------------------------------------
+ 2. PDF-Rendering — Primär: Poppler-C++ (native Library)
+--------------------------------------------------------------------------------
+   poppler-utils                Enthält pdftoppm, pdfimages, ...
+
+   Debian/Ubuntu:
+     sudo apt install poppler-utils
+
+   Hinweis:
+   - Keine Header nötig, nur das Binary pdftoppm
+
+--------------------------------------------------------------------------------
+ 4. Optional: pthread (bereits in libstdc++ enthalten)
+--------------------------------------------------------------------------------
+   Wird automatisch von CMake gefunden.
+
+================================================================================
+ Kurzbefehl (Debian/Ubuntu) — ALLE Pakete auf einmal:
+================================================================================
+
+   sudo apt install build-essential cmake libpoppler-cpp-dev poppler-utils
+
+================================================================================
+ Build nach Installation:
+================================================================================
+
+   cd /home/ralf/andy-agent
+   rm -rf build && mkdir build && cd build
+   cmake ..
+   make -j$(nproc)
+
+================================================================================
